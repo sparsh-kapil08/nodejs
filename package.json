@@ -1,9 +1,31 @@
 {
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "node": "^24.16.0"
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.3",
+    "node": "^24.16.0",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  }
+  },
+  "name": "test",
+  "version": "1.0.0",
+  "description": "NEW REPOSITORY FOR BACKEND LEARNING AND IMPLEMENTATION",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparsh-kapil08/nodejs.git"
+  },
+  "author": "sparsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sparsh-kapil08/nodejs/issues"
+  },
+  "homepage": "https://github.com/sparsh-kapil08/nodejs#readme"
 }

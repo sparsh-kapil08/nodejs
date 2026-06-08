@@ -72,7 +72,19 @@ Router.post("/logout",(req,res)=>{
     })
     res.json({message:"User logged out successfully"})
 })
-Router.get("/home",(req,res)=>{
-
-})
+Router.get("/home",async (req,res)=>{
+    const token=req.cookies.token;
+    if(!token){
+        return res.status(401).json({message:"Unauthorized"});
+    }
+    else{
+        try{
+            const check=jwt.verify(token,process.env.SECRET);
+            return res.status(200).json({message:"Welcome to the home page",user:check.id})
+        }
+        catch(err){
+            return res.status(401).json({message:"Unauthorized/Wrong Credentials"})
+        }
+    }
+});
 module.exports=Router;

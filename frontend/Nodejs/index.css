@@ -1,0 +1,19 @@
+.hidden{
+    display:none;
+}
+
+#taskpanel {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid #ccc;
+}
+
+#tasklist div {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#tasklist button {
+    margin-right: 8px;
+}

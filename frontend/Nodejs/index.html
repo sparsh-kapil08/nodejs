@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="home">
+    <button id="login"><h1>Login</h1></button>
+    <button id="Register"><h1>Register</h1></button>
+    </div>
+    <div id="loginform" class="hidden">
+        <h1>Login Form</h1>
+        
+        <input type="email" placeholder="Email" id="email1" required>
+        <input type="password" placeholder="Password" id="pass1" required>
+        <select id="role1">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+        <button id="logbtn">Login</button>
+        
+    </div>
+    <div id="signupform" class="hidden">
+        <h1>Signup Form</h1>
+        
+        <input type="email" placeholder="Email" id="email2" required>
+        <input type="password" placeholder="Password" id="pass2" required>
+        <input type="text" placeholder="Username" id="username" required>
+        <select id="role2">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+        <button id="signbtn">Signup</button>
+        
+    </div>
+    <div id="welcome" class="hidden">
+        <h1 id="greet"></h1><br>
+        <p id="userrole"></p>
+        <button id="logout">Logout</button>
+    </div>
+    <div id="adminwelcome" class="hidden">
+        <h1 id="admingreet"></h1><br>
+        <p id="adminrole"></p>
+        <button id="logoutadmin">Logout</button>
+    </div>
+    <div id="taskpanel" class="hidden">
+        <h1 id="tasktitle"></h1>
+        <input type="text" id="tasktext" placeholder="Task">
+        <input type="number" id="taskid" placeholder="Task ID">
+        <button id="addtask">Add Task</button>
+        <button id="updatetask">Update Task</button>
+        <button id="deletetask">Delete Task</button>
+        <button id="refreshtask">Refresh Tasks</button>
+        <p id="taskmessage"></p>
+        <div id="tasklist"></div>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

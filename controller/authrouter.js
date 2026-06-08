@@ -10,7 +10,7 @@ Router.use(express.urlencoded({ extended: true }));
 
 Router.post("/signup",async (req,res)=>{
     console.log(req.body);
-    if(!req.body.email || !req.body.password || !req.body.name){
+    if(!req.body.email || !req.body.password || !req.body.name || !req.body.role ){
         return res.status(400).json({message:"Please provide all the details"})
     }
     const check=await db.query("SELECT * FROM USERS WHERE email=$1",[req.body.email]);
@@ -19,7 +19,7 @@ Router.post("/signup",async (req,res)=>{
     }
     else{
         const pass=await bcrypt.hash(req.body.password,10);
-        const user=await db.query("INSERT INTO USERS(email,password,name) VALUES($1,$2,$3) RETURNING id",[req.body.email,pass,req.body.name]);
+        const user=await db.query("INSERT INTO USERS(email,password,name,role) VALUES($1,$2,$3,$4) RETURNING id",[req.body.email,pass,req.body.name,req.body.role]);
         if(user){
             const token=jwt.sign({id:user.rows[0].id},process.env.SECRET,{
                 expiresIn:"1h"
@@ -29,7 +29,7 @@ Router.post("/signup",async (req,res)=>{
                 secure:true,
                 sameSite:"none"
             });
-            return res.status(201).json({message:"User created successfully",});
+            return res.status(201).json({message:"User created successfully",user:req.body.name,role:req.body.role});
 
         }
         else{
@@ -39,10 +39,10 @@ Router.post("/signup",async (req,res)=>{
 });
 
 Router.post("/login",async (req,res)=>{
-    if(!req.body.email || !req.body.password){
+    if(!req.body.email || !req.body.password || !req.body.role){
         return res.status(400).json({message:"Please provide all the details"})
     }
-    const user=await db.query("SELECT * FROM USERS WHERE EMAIL=$1",[req.body.email]);
+    const user=await db.query("SELECT * FROM USERS WHERE EMAIL=$1 AND ROLE=$2",[req.body.email,req.body.role]);
     if(user.rows.length==0){
         return res.status(400).json({message:"User does not exist"})
     }
@@ -60,7 +60,7 @@ Router.post("/login",async (req,res)=>{
                 secure:true,
                 sameSite:"none"
             });
-            return res.status(200).json({message:"User logged in successfully",user:user.rows[0]});
+            return res.status(200).json({message:"User logged in successfully",user:user.rows[0].name,role:user.rows[0].role});
         }
     }
 });

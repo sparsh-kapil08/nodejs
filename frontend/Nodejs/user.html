@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>User Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="welcome">
+        <h1 id="greet"></h1>
+        <p id="roleText"></p>
+        <button id="back">Back</button>
+    </div>
+    <script>
+        const params=new URLSearchParams(window.location.search);
+        const name=params.get("name")||"User";
+        const role=params.get("role")||"user";
+        document.getElementById("greet").textContent=`Welcome to the Home, ${name}`;
+        document.getElementById("roleText").textContent=`Role: ${role}`;
+        document.getElementById("back").addEventListener("click",()=>{
+            window.location.href="index.html";
+        });
+    </script>
+</body>
+</html>
